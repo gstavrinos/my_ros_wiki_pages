@@ -10,35 +10,37 @@
 ## descriptive title for the tutorial
 ## title = Landing an autonomous UAV on a moving platform using only a front facing camera
 ## multi-line description to be displayed in search 
-## description = This tutorial walks you through a series of packages that can help you land a  Parrot Bebop on a moving platform using only its front facing camera.
+## description = This tutorial walks you through a series of packages that can help you land a  Parrot Bebop UAV on a moving platform using only its front facing camera.
 ## what level user is this tutorial for 
 ## level= BeginnerCategory
-## keywords = UAV, bebop, landing, moving platform
+## keywords = UAV, Parrot Bebop, landing, moving platform
 ####################################
 
 <<IncludeCSTemplate(TutorialCSHeaderTemplate)>>
 
 == Intro ==
+All the following have been tested on ROS Kinetic.
+
 The packages needed for this tutorial are the following:
 
-1. [[https://github.com/gstavrinos/bebop_simulator|bebop_gazebo]]: The simulation package of the Parrot Bebop.
+ 1. [[https://github.com/gstavrinos/bebop_simulator|bebop_gazebo]]: The simulation package of the Parrot Bebop.
 
-2. [[https://github.com/gstavrinos/ar_helipad|ar_helipad]]: The package responsible for detecting the moving platform. It is based on the [[http://wiki.ros.org/ar_track_alvar|ar_track_alvar package]].
+ 2. [[https://github.com/gstavrinos/ar_helipad|ar_helipad]]: The package responsible for detecting the moving platform. It is based on the [[http://wiki.ros.org/ar_track_alvar|ar_track_alvar package]].
 
-3. [[https://github.com/gstavrinos/tf_velocity_estimator|tf_velocity_estimator]]: The package  that estimates the velocity of the tf of interest.
+ 3. [[https://github.com/gstavrinos/tf_velocity_estimator|tf_velocity_estimator]]: The package  that estimates the velocity of the tf of interest.
 
-4. [[https://github.com/gstavrinos/aerial_local_planner|aerial_local_planner]]: The local planning package.
+ 4. [[https://github.com/gstavrinos/aerial_local_planner|aerial_local_planner]]: The local planning package.
 
-5. [[https://github.com/gstavrinos/aerial_global_planner|aerial_global_planner]]: The global planning package.
+ 5. [[https://github.com/gstavrinos/aerial_global_planner|aerial_global_planner]]: The global planning package.
 
 Before moving on how to use the packages, we should state that the planning packages assume that there are no obstacles between the robot and the moving platform's trajectory.
 
 == For the lazy ==
-If installing the above packages seems like too much work for you and you just need to see the system work, please see these two videos: [[https://drive.google.com/open?id=1DQkd9UZTZ2IQzYh8FciXG63G_HPMR6f1|video1]], [[https://drive.google.com/open?id=10WrBPOqYmKS3cZGxaIDrtHtmyxzszsyx|video2]]
+If installing the above packages seems like too much work for you and you just need to see the system work, please see these two videos: [[https://drive.google.com/open?id=1DQkd9UZTZ2IQzYh8FciXG63G_HPMR6f1|video1]], [[https://drive.google.com/open?id=10WrBPOqYmKS3cZGxaIDrtHtmyxzszsyx|video2]].
 
 == How to use the packages ==
 You need to run one executable for each of the packages mentioned above.
-The order of execution is the following:
+The order of execution is the following: (Note: each command should be executed in a separate terminal)
 
 {{{
 roslaunch bebop_gazebo bebop_moving_helipad.launch
@@ -52,10 +54,61 @@ rosrun aerial_global_planner global_planner.py
 The first command runs the Gazebo simulation for the Parrot Bebop. Gazebo often fails to start the controllers successfully. If you get the ''Failed to start controllers: controller/position, controller/velocity, controller/attitude'' message, please kill the process and try again, before running the rest of the commands.
 }}}
 
-When you successfully run all of the commands, you will see a Parrot Bebop trying to land on a moving platform. If this is not enough for you and you want to experiment with the packages, please continue reading.
+When you successfully run all of the commands, you will see a Parrot Bebop trying to land on a moving platform that is moving towards it. If this is not enough for you and you want to experiment with the packages, please continue reading.
 
 == Experimenting with the parameters ==
+In the bebop_moving_helipad.launch file in the bebop_gazebo package, you can set a series of parameters to experiment with different setups. These parameters are:
+
+ 1. Helipad starting position on the X axis.
+
+ 2. Helipad starting position on the Y axis.
+
+ 3. Helipad position on the Z axis.
+
+ 4. Helipad Vx (velocity on the X axis).
+
+ 5. Helipad Vy (velocity on the Y axis).
+
+ 6. Seconds before the helipad starts moving (increase this if you don't have the time to run all the necessary commands before the helipad starts moving).
+
+As a reference, the parameters used for video1 in the 'For the lazy' section are:
+
+ * x = 8.0
+
+ * y = 0.0
+
+ * z = 0.3
+
+ * vx = -1.0
+
+ * vy = 0.0
+
+ * t = 10
+
+and for video2 are:
+
+ * x = -4.0
+
+ * y = -5.0
+
+ * z = 0.3
+
+ * vx = 1.5
+
+ * vy = 1.0
+
+ * t = 10
+
+== Extra Info ==
+For a detailed report on the packages, you can read my MSc Dissertation here.
+
+== Questions ==
+If you find any problems with this tutorial page, please open an issue [[https://github.com/gstavrinos/my_ros_wiki_pages/issues|here]].
+
+If you find any bugs or have any problems with the packages mentioned in this tutorial, please open an issue on the corresponding package's github repository.
+
+'''Have fun!''' {{https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/turtlesim/images/kinetic.png||align="middle"}}
+
 ## AUTOGENERATED DO NOT DELETE 
 ## TutorialCategory
 ## ROSTutorialCategory
-
