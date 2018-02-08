@@ -100,7 +100,7 @@ and for video2 are:
  * t = 10
 
 == Extra Info ==
-For a detailed report on the packages, you can read my MSc Dissertation here.
+For a detailed report on the packages, you can read my MSc Dissertation [[https://drive.google.com/open?id=1NGyLeYMKpCIoXq2q6W3-3nJiNdHUuK61|here]].
 
 == Questions ==
 If you find any problems with this tutorial page, please open an issue [[https://github.com/gstavrinos/my_ros_wiki_pages/issues|here]].
